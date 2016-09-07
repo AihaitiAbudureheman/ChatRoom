@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>idt-chat-room-example</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 20px Helvetica, Arial;
+        }
+
+        #chatroom {
+            width: 50%;
+            height: 600px;
+            margin-left: 25%;
+            border: 1px solid #286090;
+        }
+
+        form {
+            background: #FFF;
+            padding: 0px;
+            position: fixed;
+            bottom: 0px;
+            width: 50%;
+            border: 1px solid #286090;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #449D44;
+        }
+
+        form input {
+            border: 0;
+            padding: 10px;
+            width: 100%;
+            margin-right: 0%;
+        }
+
+        #m {
+            border-bottom: 1px solid #286090;
+        }
+
+        form button {
+            width: 15%;
+            background: #449D44;
+            border: none;
+            padding: 10px;
+            margin-left: 42.5%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-size: 110%;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="chatroom">
+        <h1>Welcome to the chat room !</h1>
+        <hr />
+        <ul id="messages"></ul>
+        <form action="">
+            <input id="m" autocomplete="off" />
+            <button>Send</button>
+            <input id="userName" placeholder="Chat with your own name">
+        </form>
+
+    </div>
+
+
+    <!--Load the socket.io_client-->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        //Make random user name
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 5; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            return text;
+        }
+
+        //change the user name with own name
+        var username = makeid();
+        var socket = io();
+        $('form').submit(function() {
+            console.log($("#userName").val());
+            if ($("#userName").val()) {
+                username = $("#userName").val();
+            }
+            socket.emit('chat message', username + ": " + $('#m').val());
+            $('#m').val('');
+            return false;
+        });
+        socket.on('chat message', function(msg) {
+            $('#messages').append($('<li>').text(msg));
+        });
+    </script>
+
+</body>
+
+</html>
