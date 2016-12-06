@@ -2,92 +2,98 @@
 <html>
 
 <head>
-    <title>idt-chat-room-example</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Let's Chat !</title>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        body,
+        input {
+            background-color: #293A4A;
         }
 
-        body {
-            font: 20px Helvetica, Arial;
+        h1,
+        form {
+            text-align: center;
+        }
+
+        h1,
+        input,
+        li {
+            color: #ffffff;
+            list-style: none;
         }
 
         #chatroom {
-            width: 50%;
-            height: 600px;
-            margin-left: 25%;
-            border: 1px solid #286090;
-        }
-
-        form {
-            background: #FFF;
-            padding: 0px;
-            position: fixed;
-            bottom: 0px;
-            width: 50%;
-            border: 1px solid #286090;
-        }
-
-        h1 {
-            text-align: center;
-            margin-top: 50px;
-            color: #449D44;
-        }
-
-        form input {
-            border: 0;
-            padding: 10px;
-            width: 100%;
-            margin-right: 0%;
-        }
-
-        #m {
-            border-bottom: 1px solid #286090;
-        }
-
-        form button {
-            width: 15%;
-            background: #449D44;
+            width: 76%;
+            height: 100vh;
             border: none;
-            padding: 10px;
-            margin-left: 42.5%;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            font-size: 110%;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        #chatroom #m {
+            width: 70%;
+            border: none;
+            border-bottom: 1px solid #8BC34A;
+        }
+
+        #chatroom #userName {
+            width: 35%;
+            border: none;
+            border-bottom: 1px solid #8BC34A;
+        }
+
+        #chatroom input:focus {
+            outline: none;
+        }
+
+        button:focus {
+            outline: 0 !important;
+        }
+
+         ::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            font-style: italic;
+        }
+
+         ::-moz-placeholder {
+            /* Firefox 19+ */
+            font-style: italic;
+        }
+
+         :-ms-input-placeholder {
+            /* IE 10+ */
+            font-style: italic;
+        }
+
+         :-moz-placeholder {
+            /* Firefox 18- */
+            font-style: italic;
         }
 
         #messages {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #messages li {
-            padding: 5px 10px;
-        }
-
-        #messages li:nth-child(odd) {
-            background: #eee;
+            width: 100%;
+            height: 60%;
         }
     </style>
-
 </head>
 
 <body>
 
     <div id="chatroom">
-        <h1>Welcome to the chat room !</h1>
+        <h1>Let's Chat !</h1>
         <hr />
         <ul id="messages"></ul>
         <form action="">
             <input id="m" autocomplete="off" />
-            <button>Send</button>
-            <input id="userName" placeholder="Chat with your own name">
+            <br>
+            <br>
+            <button class="btn btn-success">Send</button>
+            <br>
+            <br>
+            <input id="userName" placeholder="Enter Name...">
         </form>
-
     </div>
 
 
